@@ -10,11 +10,11 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-6">
               <Image
-                src="/TRP Video Production Logo - Tyler Phillips.png"
+                src="/TRP-Video-Advertising - Tyler Phillips.png"
                 alt="TRP Creative"
-                width={140}
+                width={160}
                 height={50}
-                className="h-10 w-auto"
+                className="h-12 w-auto"
               />
             </Link>
             <p className="text-white/60 mb-6 max-w-md leading-relaxed font-light">

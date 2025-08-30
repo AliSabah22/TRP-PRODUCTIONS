@@ -37,9 +37,9 @@ export function Header() {
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center">
               <Image
-                src="/TRP Video Production Logo - Tyler Phillips.png"
+                src="/TRP-Video-Advertising - Tyler Phillips.png"
                 alt="TRP Creative"
-                width={120}
+                width={140}
                 height={40}
                 className="h-10 w-auto"
               />
@@ -61,9 +61,9 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <Image
-              src="/TRP Video Production Logo - Tyler Phillips.png"
+              src="/TRP-Video-Advertising - Tyler Phillips.png"
               alt="TRP Creative"
-              width={120}
+              width={140}
               height={40}
               className="h-10 w-auto group-hover:opacity-80 transition-opacity duration-300"
             />
