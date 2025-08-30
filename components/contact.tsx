@@ -10,11 +10,47 @@ export function Contact() {
     projectType: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage(result.message);
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          projectType: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(result.error || 'Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -40,6 +76,20 @@ export function Contact() {
           {/* Contact Form */}
           <div>
             <h3 className="text-2xl font-light text-white mb-8">Start Your Project</h3>
+            
+            {/* Status Messages */}
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-500/20 border border-green-500/30 text-green-400">
+                {submitMessage}
+              </div>
+            )}
+            
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-500/20 border border-red-500/30 text-red-400">
+                {submitMessage}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -53,7 +103,8 @@ export function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
                     placeholder="Your name"
                   />
                 </div>
@@ -68,7 +119,8 @@ export function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -84,7 +136,8 @@ export function Contact() {
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
                   placeholder="Your company"
                 />
               </div>
@@ -98,13 +151,16 @@ export function Contact() {
                   name="projectType"
                   value={formData.projectType}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white focus:outline-none focus:border-blue transition-colors font-light"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
                 >
                   <option value="">Select project type</option>
                   <option value="commercial">Commercial</option>
                   <option value="brand-film">Brand Film</option>
                   <option value="product-video">Product Video</option>
                   <option value="event-coverage">Event Coverage</option>
+                  <option value="testimonial">Testimonial</option>
+                  <option value="content-creation">Content Creation</option>
                   <option value="other">Other</option>
                 </select>
               </div>
@@ -119,17 +175,19 @@ export function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                   rows={5}
-                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light"
+                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
                   placeholder="Tell us about your project..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full px-8 py-4 bg-blue text-white font-medium text-base rounded-none hover:bg-blue/90 transition-all duration-300"
+                disabled={isSubmitting}
+                className="w-full px-8 py-4 bg-blue text-white font-medium text-base rounded-none hover:bg-blue/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
