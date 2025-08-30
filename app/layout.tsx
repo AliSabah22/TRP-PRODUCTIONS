@@ -2,11 +2,15 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
-  title: 'TRP Production',
-  description: 'Professional video production services',
+  title: 'TRP Creative - Simple Visions, Powerful Stories',
+  description: 'Professional video production agency specializing in cinematic commercials, brand films, and compelling storytelling.',
+  keywords: 'video production, commercial production, brand films, cinematography, TRP Creative',
 };
 
 export default function RootLayout({
@@ -15,8 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={inter.variable}>
+      <body className="font-sans antialiased">
+        {children}
+      </body>
     </html>
   );
 }
