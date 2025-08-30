@@ -3,23 +3,23 @@ import Image from 'next/image';
 export function Portfolio() {
   const projects = [
     {
-      title: 'Nike Commercial',
+      title: 'Video Commercials',
       category: 'Commercial',
-      description: 'Dynamic sports commercial showcasing athletic performance.',
+      description: 'Take your customer on a journey with your product through a captivating commercial. All we need is your vision and we\'ll tell the story. Don\'t have a vision? We can help you discover it.',
       image: '/work-image1.jpg',
       videoUrl: '#'
     },
     {
-      title: 'Tesla Brand Film',
-      category: 'Brand Film',
-      description: 'Innovation-focused brand story for Tesla.',
+      title: 'Professional Testimonials',
+      category: 'Testimonials',
+      description: 'There\'s nothing that builds trust more with a prospective customer than seeing a genuine testimonial. We can help you capture that!',
       image: '/work-image2.jpg',
       videoUrl: '#'
     },
     {
-      title: 'Apple Product Video',
-      category: 'Product',
-      description: 'Elegant product showcase for Apple devices.',
+      title: 'Content Creation',
+      category: 'Social Media',
+      description: 'In this scrolling enveloped world if you want to attract people to your product/service, they first have to see you on Social Media.',
       image: '/work-image3.jpg',
       videoUrl: '#'
     }
