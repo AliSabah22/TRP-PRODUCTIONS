@@ -1,75 +1,86 @@
+import Image from 'next/image';
+
 export function About() {
   return (
-    <section id="about" className="py-24 bg-charcoal-light">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section id="about" className="py-32 bg-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-light text-charcoal mb-8 tracking-tight">
               About TRP Creative
             </h2>
-            <p className="text-xl text-white/70 mb-8 leading-relaxed font-light">
+            <p className="text-lg text-charcoal/70 mb-8 leading-relaxed font-light">
               We are a passionate team of filmmakers, storytellers, and creative professionals 
               dedicated to bringing your vision to life through exceptional video content.
             </p>
-            <p className="text-white/70 mb-12 leading-relaxed">
+            <p className="text-charcoal/70 mb-12 leading-relaxed font-light">
               With over a decade of experience in commercial production, brand storytelling, 
               and cinematic content creation, we understand what it takes to create videos 
               that not only look amazing but also drive real results for your business.
             </p>
             
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-12">
               <div className="text-center">
-                <div className="text-4xl font-bold text-blue mb-3">500+</div>
-                <div className="text-white/60 text-sm uppercase tracking-wide">Projects Delivered</div>
+                <div className="text-3xl font-light text-blue mb-2">500+</div>
+                <div className="text-charcoal/60 text-xs uppercase tracking-widest font-light">Projects</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-blue mb-3">98%</div>
-                <div className="text-white/60 text-sm uppercase tracking-wide">Client Satisfaction</div>
+                <div className="text-3xl font-light text-blue mb-2">98%</div>
+                <div className="text-charcoal/60 text-xs uppercase tracking-widest font-light">Satisfaction</div>
               </div>
             </div>
           </div>
           
           <div className="relative">
-            <div className="bg-charcoal rounded-xl p-10">
-              <h3 className="text-3xl font-bold text-white mb-8">Why Choose Us?</h3>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="w-8 h-8 bg-blue rounded-full flex items-center justify-center mr-6 mt-1">
-                    <span className="text-white text-sm font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold mb-2 text-lg">Professional Quality</h4>
-                    <p className="text-white/60 leading-relaxed">Cinema-grade equipment and experienced crew</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-8 h-8 bg-blue rounded-full flex items-center justify-center mr-6 mt-1">
-                    <span className="text-white text-sm font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold mb-2 text-lg">Creative Storytelling</h4>
-                    <p className="text-white/60 leading-relaxed">Compelling narratives that connect with audiences</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-8 h-8 bg-blue rounded-full flex items-center justify-center mr-6 mt-1">
-                    <span className="text-white text-sm font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold mb-2 text-lg">Fast Turnaround</h4>
-                    <p className="text-white/60 leading-relaxed">Quick delivery without compromising quality</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-8 h-8 bg-blue rounded-full flex items-center justify-center mr-6 mt-1">
-                    <span className="text-white text-sm font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold mb-2 text-lg">Full Service</h4>
-                    <p className="text-white/60 leading-relaxed">From concept to final delivery</p>
-                  </div>
-                </div>
-              </div>
+            <div className="rounded-none overflow-hidden">
+              <Image
+                src="/bts-image.jpg"
+                alt="Behind the Scenes - TRP Creative"
+                width={600}
+                height={400}
+                className="w-full h-96 object-cover"
+              />
+            </div>
+          </div>
+        </div>
+        
+        {/* Owner/Team Section */}
+        <div className="mt-32 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="relative">
+            <div className="rounded-none overflow-hidden">
+              <Image
+                src="/about-image(owner's image).jpg"
+                alt="Tyler Phillips - TRP Creative Founder"
+                width={600}
+                height={800}
+                className="w-full h-96 object-cover"
+              />
+            </div>
+          </div>
+          
+          <div>
+            <h3 className="text-2xl font-light text-charcoal mb-6">Meet Our Founder</h3>
+            <p className="text-charcoal/70 mb-6 leading-relaxed font-light">
+              Tyler Phillips leads TRP Creative with a passion for storytelling and a commitment to excellence. 
+              With years of experience in video production, Tyler ensures every project meets the highest standards 
+              of quality and creativity.
+            </p>
+            <p className="text-charcoal/70 mb-8 leading-relaxed font-light">
+              Our team combines technical expertise with creative vision to deliver videos that not only look 
+              stunning but also drive real business results for our clients.
+            </p>
+            
+            <div className="flex space-x-4">
+              <a href="#contact">
+                <button className="px-6 py-3 bg-blue text-white font-medium text-sm rounded-none hover:bg-blue/90 transition-all duration-300">
+                  Work With Us
+                </button>
+              </a>
+              <a href="#portfolio">
+                <button className="px-6 py-3 border border-charcoal text-charcoal font-medium text-sm rounded-none hover:bg-charcoal hover:text-white transition-all duration-300">
+                  View Portfolio
+                </button>
+              </a>
             </div>
           </div>
         </div>

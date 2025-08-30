@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,8 +36,13 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-white">TRP</span>
-              <span className="text-sm text-blue ml-2">Creative</span>
+              <Image
+                src="/TRP Video Production Logo - Tyler Phillips.png"
+                alt="TRP Creative"
+                width={120}
+                height={40}
+                className="h-10 w-auto"
+              />
             </Link>
           </div>
         </div>
@@ -54,8 +60,13 @@ export function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
-            <span className="text-2xl font-bold text-white group-hover:text-blue transition-colors duration-300">TRP</span>
-            <span className="text-sm text-blue ml-2 font-medium">Creative</span>
+            <Image
+              src="/TRP Video Production Logo - Tyler Phillips.png"
+              alt="TRP Creative"
+              width={120}
+              height={40}
+              className="h-10 w-auto group-hover:opacity-80 transition-opacity duration-300"
+            />
           </Link>
 
           {/* Desktop Navigation */}
