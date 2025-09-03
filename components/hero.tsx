@@ -46,16 +46,16 @@ export function Hero() {
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-3xl mx-auto">
           <div className="text-center">
-            <div className="text-3xl font-light text-blue mb-2">500+</div>
-            <div className="text-white/60 text-xs uppercase tracking-widest">Projects</div>
+            <div className="text-3xl font-light text-blue mb-2">200+</div>
+            <div className="text-white/60 text-xs uppercase tracking-widest">Videos</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-light text-blue mb-2">98%</div>
+            <div className="text-3xl font-light text-blue mb-2">100%</div>
             <div className="text-white/60 text-xs uppercase tracking-widest">Satisfaction</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-light text-blue mb-2">10+</div>
-            <div className="text-white/60 text-xs uppercase tracking-widest">Years</div>
+            <div className="text-3xl font-light text-blue mb-2">2,000,000+</div>
+            <div className="text-white/60 text-xs uppercase tracking-widest">Views From Ads</div>
           </div>
         </div>
       </div>

@@ -1,65 +1,4 @@
-'use client';
-
-import { useState } from 'react';
-
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    projectType: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [submitMessage, setSubmitMessage] = useState('');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setSubmitMessage(result.message);
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          projectType: '',
-          message: ''
-        });
-      } else {
-        setSubmitStatus('error');
-        setSubmitMessage(result.error || 'Failed to send message. Please try again.');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-      setSubmitMessage('Failed to send message. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
   return (
     <section id="contact" className="py-32 bg-charcoal">
       <div className="max-w-6xl mx-auto px-6">
@@ -77,20 +16,7 @@ export function Contact() {
           <div>
             <h3 className="text-2xl font-light text-white mb-8">Start Your Project</h3>
             
-            {/* Status Messages */}
-            {submitStatus === 'success' && (
-              <div className="mb-6 p-4 bg-green-500/20 border border-green-500/30 text-green-400">
-                {submitMessage}
-              </div>
-            )}
-            
-            {submitStatus === 'error' && (
-              <div className="mb-6 p-4 bg-red-500/20 border border-red-500/30 text-red-400">
-                {submitMessage}
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form action="/api/contact" method="POST" className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-white font-light mb-3 text-sm">
@@ -100,11 +26,8 @@ export function Contact() {
                     type="text"
                     id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
                     required
-                    disabled={isSubmitting}
-                    className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
+                    className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light"
                     placeholder="Your name"
                   />
                 </div>
@@ -116,11 +39,8 @@ export function Contact() {
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
                     required
-                    disabled={isSubmitting}
-                    className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
+                    className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -134,10 +54,7 @@ export function Contact() {
                   type="text"
                   id="company"
                   name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
+                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light"
                   placeholder="Your company"
                 />
               </div>
@@ -149,10 +66,7 @@ export function Contact() {
                 <select
                   id="projectType"
                   name="projectType"
-                  value={formData.projectType}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
+                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white focus:outline-none focus:border-blue transition-colors font-light"
                 >
                   <option value="">Select project type</option>
                   <option value="commercial">Commercial</option>
@@ -166,28 +80,43 @@ export function Contact() {
               </div>
 
               <div>
+                <label htmlFor="budget" className="block text-white font-light mb-3 text-sm">
+                  Budget Range
+                </label>
+                <select
+                  id="budget"
+                  name="budget"
+                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white focus:outline-none focus:border-blue transition-colors font-light"
+                >
+                  <option value="">Select budget range</option>
+                  <option value="under-5k">Under $5,000</option>
+                  <option value="5k-10k">$5,000 - $10,000</option>
+                  <option value="10k-25k">$10,000 - $25,000</option>
+                  <option value="25k-50k">$25,000 - $50,000</option>
+                  <option value="50k-plus">$50,000+</option>
+                  <option value="discuss">Let's discuss</option>
+                </select>
+              </div>
+
+              <div>
                 <label htmlFor="message" className="block text-white font-light mb-3 text-sm">
                   Project Details *
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
                   required
-                  disabled={isSubmitting}
                   rows={5}
-                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
+                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-blue transition-colors font-light"
                   placeholder="Tell us about your project..."
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-blue text-white font-medium text-base rounded-none hover:bg-blue/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-8 py-4 bg-blue text-white font-medium text-base rounded-none hover:bg-blue/90 transition-all duration-300"
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                Send Message
               </button>
             </form>
           </div>
