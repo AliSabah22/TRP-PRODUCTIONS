@@ -1,31 +1,6 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-
 export function Services() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById('services');
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
-  }, []);
+  // Simplified - no intersection observer for faster startup
+  const isVisible = true;
 
   const services = [
     {
@@ -86,9 +61,9 @@ export function Services() {
           {services.map((service, index) => (
             <div 
               key={index} 
-              className={`group transition-all duration-1000 delay-${index * 200} ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+            className={`group transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
             >
               <div className="flex items-start space-x-6">
                 <div className="flex-shrink-0 w-16 h-16 bg-blue/10 rounded-lg flex items-center justify-center group-hover:bg-blue/20 transition-all duration-300 group-hover:scale-110">
@@ -117,7 +92,7 @@ export function Services() {
           ))}
         </div>
 
-        <div className={`text-center mt-20 transition-all duration-1000 delay-800 ${
+        <div className={`text-center mt-20 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <a href="#contact">

@@ -123,45 +123,30 @@ export function Portfolio() {
         </div>
       </section>
 
-      {/* Video Modal */}
+      {/* Inline Modal - Faster than separate component */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
           <div className="bg-white max-w-6xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center">
               <h3 className="text-2xl font-light text-charcoal">{selectedService} Videos</h3>
-              <button 
-                onClick={closeModal}
-                className="text-charcoal hover:text-blue transition-colors text-2xl"
-              >
-                ×
-              </button>
+              <button onClick={closeModal} className="text-charcoal hover:text-blue transition-colors text-2xl">×</button>
             </div>
-            
             <div className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {selectedVideos.map((video, index) => (
-                  <div key={index} className="bg-gray-50 border border-gray-200 p-4 rounded-none">
+                  <div key={index} className="bg-gray-50 border border-gray-200 p-4">
                     <div className="aspect-video bg-gray-200 mb-4 relative overflow-hidden">
                       <img
-                        src={getYouTubeThumbnail(video.url)}
+                        src={`https://img.youtube.com/vi/${video.url.includes('youtube.com/watch?v=') ? video.url.split('v=')[1] : video.url.split('youtu.be/')[1]}/maxresdefault.jpg`}
                         alt={video.title}
                         className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                        }}
                       />
                       <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                         <div className="text-white text-4xl">▶</div>
                       </div>
                     </div>
-                    <h4 className="text-lg font-medium text-charcoal mb-3 line-clamp-2">{video.title}</h4>
-                    <a 
-                      href={video.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-2 px-4 py-2 bg-blue text-white text-sm font-medium rounded-none hover:bg-blue/90 transition-all duration-300"
-                    >
+                    <h4 className="text-lg font-medium text-charcoal mb-3">{video.title}</h4>
+                    <a href={video.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2 px-4 py-2 bg-blue text-white text-sm font-medium hover:bg-blue/90 transition-all duration-300">
                       <span>Watch Video</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

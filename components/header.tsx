@@ -1,131 +1,25 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
-
-  const navItems = [
-    { href: '#home', label: 'Home' },
-    { href: '#services', label: 'Services' },
-    { href: '#portfolio', label: 'Portfolio' },
-    { href: '#about', label: 'About' },
-    { href: '#contact', label: 'Contact' },
-  ];
-
-  if (!isMounted) {
-    return (
-      <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/TRP-Video-Advertising - Tyler Phillips.png"
-                alt="TRP Creative"
-                width={140}
-                height={40}
-                className="h-10 w-auto"
-              />
-            </Link>
-          </div>
-        </div>
-      </header>
-    );
-  }
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'bg-charcoal/95 backdrop-blur-md border-b border-white/10' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center group">
-            <Image
-              src="/TRP-Video-Advertising - Tyler Phillips.png"
-              alt="TRP Creative"
-              width={140}
-              height={40}
-              className="h-10 w-auto group-hover:opacity-80 transition-opacity duration-300"
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-12">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-white/80 hover:text-white transition-colors duration-300 font-medium text-sm tracking-wide"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* CTA Button */}
-          <div className="hidden lg:block">
-            <a href="#contact">
-              <button className="px-8 py-3 bg-blue text-white font-bold rounded-lg hover:bg-blue/90 transition-all duration-300 transform hover:scale-105">
-                Book a Call
-              </button>
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button 
-            className="lg:hidden text-white p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden bg-charcoal/98 backdrop-blur-md border-t border-white/10">
-            <nav className="flex flex-col space-y-4 py-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-white/80 hover:text-white transition-colors duration-300 font-medium px-4 py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
-              <div className="px-4 pt-4">
-                <a href="#contact">
-                  <button className="w-full px-8 py-3 bg-blue text-white font-bold rounded-lg hover:bg-blue/90 transition-all duration-300">
-                    Book a Call
-                  </button>
-                </a>
-              </div>
-            </nav>
-          </div>
-        )}
+    <header className="bg-charcoal-dark/80 backdrop-blur-sm sticky top-0 z-40 border-b border-white/10">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/TRP-Video-Advertising - Tyler Phillips.png"
+            alt="TRP Creative"
+            width={140}
+            height={40}
+            className="h-10 w-auto"
+          />
+        </Link>
+        <nav className="hidden md:flex items-center space-x-8">
+          <a href="#services" className="text-white/80 hover:text-white transition-colors font-light text-sm">Services</a>
+          <a href="#portfolio" className="text-white/80 hover:text-white transition-colors font-light text-sm">Work</a>
+          <a href="#about" className="text-white/80 hover:text-white transition-colors font-light text-sm">About</a>
+          <a href="#contact" className="text-white/80 hover:text-white transition-colors font-light text-sm">Contact</a>
+        </nav>
       </div>
     </header>
   );

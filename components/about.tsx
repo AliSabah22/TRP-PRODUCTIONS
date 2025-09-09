@@ -1,32 +1,8 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export function About() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById('about');
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
-  }, []);
+  // Simplified - no intersection observer for faster startup
+  const isVisible = true;
 
   return (
     <section id="about" className="py-32 bg-white overflow-hidden">
@@ -60,6 +36,7 @@ export function About() {
                 width={600}
                 height={400}
                 className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-700"
+                unoptimized
               />
             </div>
           </div>
@@ -70,11 +47,12 @@ export function About() {
           <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <div className="rounded-none overflow-hidden group">
               <Image
-                src="/about-image(owner's image).jpg"
+                src="/about-owner.jpg"
                 alt="Tyler R. Phillips - TRP Production Founder"
                 width={600}
                 height={800}
                 className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-700"
+                unoptimized
               />
             </div>
           </div>

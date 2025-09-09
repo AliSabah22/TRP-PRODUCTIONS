@@ -1,13 +1,31 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: 'class',
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  safelist: [
+    'bg-charcoal/60',
+    'bg-charcoal/90',
+    'bg-charcoal/95',
+    'bg-blue/10',
+    'bg-blue/20',
+    'text-white/60',
+    'border-white/10',
+    'text-blue/80',
   ],
   theme: {
     extend: {
+      transitionDelay: {
+        '0': '0ms',
+        '200': '200ms',
+        '400': '400ms',
+        '600': '600ms',
+        '800': '800ms',
+      },
       colors: {
         blue: '#009fe3',
         white: '#ffffff',
@@ -16,8 +34,8 @@ const config: Config = {
         'charcoal-dark': '#0a0a0a',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['system-ui', '-apple-system', 'sans-serif'],
+        display: ['system-ui', '-apple-system', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',

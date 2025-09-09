@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+ :root {
   --blue: #009fe3;
   --white: #ffffff;
   --charcoal: #1a1a1a;
@@ -23,7 +23,7 @@ body {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   line-height: 1.6;
 }
 
