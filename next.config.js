@@ -4,6 +4,7 @@ const nextConfig = {
   reactStrictMode: false,
   poweredByHeader: false,
   compress: false,
+  swcMinify: true,
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
   images: { unoptimized: true },
