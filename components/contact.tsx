@@ -8,6 +8,7 @@ export function Contact() {
     email: '',
     company: '',
     projectType: '',
+    budget: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,6 +40,7 @@ export function Contact() {
           email: '',
           company: '',
           projectType: '',
+          budget: '',
           message: ''
         });
       } else {
@@ -162,6 +164,29 @@ export function Contact() {
                   <option value="testimonial">Testimonial</option>
                   <option value="content-creation">Content Creation</option>
                   <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="budget" className="block text-white font-light mb-3 text-sm">
+                  Budget Range
+                </label>
+                <select
+                  id="budget"
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 bg-transparent border border-white/20 text-white focus:outline-none focus:border-blue transition-colors font-light disabled:opacity-50"
+                >
+                  <option value="">Select budget range</option>
+                  <option value="under-5k">Under $5,000</option>
+                  <option value="5k-10k">$5,000 - $10,000</option>
+                  <option value="10k-25k">$10,000 - $25,000</option>
+                  <option value="25k-50k">$25,000 - $50,000</option>
+                  <option value="50k-100k">$50,000 - $100,000</option>
+                  <option value="over-100k">Over $100,000</option>
+                  <option value="discuss">Let's discuss</option>
                 </select>
               </div>
 
