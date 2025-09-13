@@ -1,0 +1,23 @@
+
+> trp-production@0.1.0 dev
+> next dev
+
+node:internal/modules/package_json_reader:110
+  const parsed = modulesBinding.readPackageJSON(
+                                ^
+
+Error: Invalid package config /Users/alisabah/Desktop/TRP-PRODUCTIONS/trp-production/node_modules/styled-jsx/package.json.
+    at read (node:internal/modules/package_json_reader:110:33)
+    at readPackage (node:internal/modules/package_json_reader:135:10)
+    at resolveExports (node:internal/modules/cjs/loader:653:15)
+    at Function._findPath (node:internal/modules/cjs/loader:749:31)
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1387:27)
+    at resolve (node:internal/modules/helpers:145:19)
+    at Object.<anonymous> (/Users/alisabah/Desktop/TRP-PRODUCTIONS/trp-production/node_modules/next/dist/server/require-hook.js:38:32)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32) {
+  code: 'ERR_INVALID_PACKAGE_CONFIG'
+}
+
+Node.js v22.15.1
